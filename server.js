@@ -6,7 +6,7 @@ const io = require('socket.io')(http,
     {
         cors: {
             origin: "https://softway.vn",
-            credentials: true
+            credentials: false
         }
     }
 );
