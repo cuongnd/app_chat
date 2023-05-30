@@ -4,10 +4,10 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-
+const cors = require('cors');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
-
+app.use(cors());
 var Messages = mongoose.model('messages',{ name : String, message : String});
 
 app.get('/', function (req, res) {
@@ -31,7 +31,7 @@ app.post('/messages', (req, res) => {
   })
 
 
-io.on('connection', () =>{ 
+io.on('connection', () =>{
     console.log('connecting');
 });
 
