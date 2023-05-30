@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 const cors = require('cors');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(cors());
+app.use(cors({origin: ['https://softway.vn', 'http://127.0.0.1:8888']}));
 var Messages = mongoose.model('messages',{ name : String, message : String});
 
 app.get('/', function (req, res) {
