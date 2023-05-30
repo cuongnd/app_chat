@@ -2,11 +2,22 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http,{
-    cors: {
-        origin: '*',
+const io = require('socket.io')(http,
+    {
+        origins: ["https://softway.vn"],
+
+        handlePreflightRequest: (req, res) => {
+            res.writeHead(200, {
+                "Access-Control-Allow-Origin": "https://softway.vn",
+                "Access-Control-Allow-Methods": "GET,POST",
+                "Access-Control-Allow-Headers": "my-custom-header",
+                "Access-Control-Allow-Credentials": true
+            });
+            res.end();
+        }
     }
-});
+)
+
 var mongoose = require('mongoose');
 const cors = require('cors');
 app.use(bodyParser.json());
